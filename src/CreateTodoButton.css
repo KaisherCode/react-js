@@ -1,0 +1,5 @@
+.CreateTodoButton {
+    box-shadow: 0 5px 25px rgba(97, 218, 250, .5);
+    transform: rotate(0);
+    transition: .3s ease
+}

@@ -8,7 +8,7 @@ import './App.css'
 
 const defaultTodos = [
   { text: 'Hacer 30 minutos de yoga', completed: true },
-  { text: 'Cita con el dentista', completed: false },
+  { text: 'Cita con el dentista', completed: true },
   { text: 'Comprar pan', completed: false },
   { text: 'Actualización del sitio', completed: false },
 ]
