@@ -11,3 +11,23 @@ Currently, two official plugins are available:
 ## ¿Qué es un componente?
 
 ## ¿Qué es el estado?
+
+```jsx
+  let parsedTodos = JSON.parse(localStorage.getItem('TODOS_V1')) 
+  if(!parsedTodos){
+    localStorage.getItem('TODOS_V1',JSON.stringify([]))
+    parsedTodos=[]
+  }
+```
+```jsx
+// const defaultTodos = [
+//   { text: 'Hacer 30 minutos de yoga', completed: true },
+//   { text: 'Cita con el dentista', completed: false },
+//   { text: 'Comprar pan', completed: false },
+//   { text: 'Actualización del sitio', completed: false },
+// ]
+
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+// localStorage.removeItem('TODOS_V1');
+
+```

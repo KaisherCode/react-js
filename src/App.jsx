@@ -4,30 +4,28 @@ import { TodoSearch } from './TodoSearch'
 import { TodoList } from './TodoList'
 import { TodoItem } from './TodoItem'
 import { CreateTodoButton } from './CreateTodoButton'
-
 import './App.css'
 
-const defaultTodos = [
-  { text: 'Hacer 30 minutos de yoga', completed: true },
-  { text: 'Cita con el dentista', completed: false },
-  { text: 'Comprar pan', completed: false },
-  { text: 'Actualización del sitio', completed: false },
-]
-
-function App() {
-  // Contando TODOs
-  const localStorageTodos = localStorage.getItem('TODOS_V1')
-
-  let parsedTodos;
-
-  if (!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]))
-    parsedTodos = []
+function useLocalStorage(itemName, initialValue) {
+  const localStorageItem = localStorage.getItem(itemName)
+  let parsedItem
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue))
+    parsedItem = initialValue
   } else {
-    parsedTodos = JSON.parse(localStorageTodos)
+    parsedItem = JSON.parse(localStorageItem)
   }
-
-  const [todos, setTodos] = useState(parsedTodos)
+  const [item, setItem] = React.useState(parsedItem)
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem))
+    setItem(newItem)
+  }
+  return [item, saveItem]
+}
+function App() {
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', [])
+  const [searchValue, setSearchValue] = React.useState('')
+  // Contando TODOs
   const completedTodos = todos.filter(
     (todo) => {
       return todo.completed === true
@@ -35,17 +33,11 @@ function App() {
   ).length
   const totalTodos = todos.length
   // Buscando TODOs
-  const [searchValue, setSearchValue] = useState('')
   const searchedTodos = todos.filter((todo) => {
     const todoText = todo.text.toLowerCase()
     const searchText = searchValue.toLowerCase()
     return todoText.includes(searchText)
   })
-
-  const saveTodos =(newTodos)=>{
-    localStorage.setItem('TODOS_V1',JSON.stringify(newTodos))
-    setTodos(newTodos)
-  }
   // Completar TODOs
   const completeTodo = (text) => {
     const newTodos = [...todos]
