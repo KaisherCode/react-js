@@ -33,7 +33,6 @@ function useLocalStorage(itemName, initialValue) {
     localStorage.setItem(itemName, JSON.stringify(newItem))
     setItem(newItem)
   }
-  console.log(item)
   return {
     loading,
     error,
