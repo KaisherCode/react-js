@@ -1,11 +1,16 @@
 import React from 'react'
 import { useLocalStorage } from './useLocalStorage'
-
-import './App.css'
 import { AppUI } from './AppUI'
 
+import './App.css'
+
 function App() {
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', [])
+  const {
+    loading,
+    error,
+    item:todos,
+    saveItem:saveTodos,
+  } = useLocalStorage('TODOS_V1', [])
   const [searchValue, setSearchValue] = React.useState('')
   // Counting TODOs
   const completedTodos = todos.filter(
@@ -40,6 +45,8 @@ function App() {
   }
   return (
     <AppUI
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}
