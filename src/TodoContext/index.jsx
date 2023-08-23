@@ -11,6 +11,7 @@ function TodoProvider({ children }) {
     saveItem: saveTodos,
   } = useLocalStorage('TODOS_V1', [])
   const [searchValue, setSearchValue] = React.useState('')
+  const [openModal, setOpenModal] = React.useState(false)
   // Counting TODOs
   const completedTodos = todos.filter(
     (todo) => {
@@ -42,6 +43,7 @@ function TodoProvider({ children }) {
     newTodos.splice(todoIndex, 1)
     saveTodos(newTodos)
   }
+  // 
   return (
     <TodoContext.Provider value={
       {
@@ -54,6 +56,8 @@ function TodoProvider({ children }) {
         searchedTodos,
         completeTodo,
         deleteTodo,
+        openModal,
+        setOpenModal,
       }
     }>
       {children}
