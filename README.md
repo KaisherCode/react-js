@@ -31,3 +31,39 @@ Currently, two official plugins are available:
 // localStorage.removeItem('TODOS_V1');
 
 ```
+
+## Deploy
+
+`npm run build`
+
+```jsx
+
+"homepage": "/home/kaisher/developer/platzi/frontend-react/curso-react-js/dist"
+
+```
+
+````jsx
+
+"homepage": "https://KaisherCode.github.io/react-js"
+
+```
+
+Instalar la herramienta gh-pages: `npm install --save-dev gh-pages`
+
+En el archivo package.json.
+
+```
+
+"scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+
+```
+
+`npm run deploy`
+
